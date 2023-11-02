@@ -26,31 +26,38 @@ export const fetchAsyncMovieOrShowDetail = createAsyncThunk('movies/fetchAsyncMo
 const initialState={
     movies:{},
     shows:{},
-    selectMovieOrShow:{}
+    selectMovieOrShow:{},
+    loading:false,
 }
 
 const movieSlice = createSlice({
   name: "movies",
   initialState,
   reducers: {
-    removeSelectedMovieOrShow: (state)=>{
-      state.selectMovieOrShow={};
-    }
+    removeSelectedMovieOrShow: (state) => {
+      state.selectMovieOrShow = {};
+    },
   },
   extraReducers: {
-    [fetchAsyncMovies.pending]: () => {
+    [fetchAsyncMovies.pending]: (state) => {
       console.log("Pending");
+      state.loading = true;
     },
     [fetchAsyncMovies.fulfilled]: (state, { payload }) => {
       console.log("Fetched Successfully");
-      return { ...state, movies: payload };
+      return { ...state, movies: payload, loading: false };
     },
-    [fetchAsyncMovies.rejected]: () => {
+    [fetchAsyncMovies.rejected]: (state) => {
       console.log("Rejected!");
+      state.loading = false;
+    },
+    [fetchAsyncShows.pending]: (state) => {
+      console.log("Fetched Successfully");
+      state.loading=true;
     },
     [fetchAsyncShows.fulfilled]: (state, { payload }) => {
       console.log("Fetched Successfully");
-      return { ...state, shows: payload };
+      return { ...state, shows: payload,loading:false };
     },
     [fetchAsyncMovieOrShowDetail.fulfilled]: (state, { payload }) => {
       console.log("Fetched Successfully");

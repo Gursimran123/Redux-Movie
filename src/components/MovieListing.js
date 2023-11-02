@@ -9,8 +9,13 @@ const MovieListing = () => {
   
   const movies=useSelector(getAllMovies);
   const shows=useSelector(getAllShows);
+  const loading = useSelector((state) => state.movies.loading);
   let renderMovies="";
   let renderShows="";
+
+  if (loading) {
+    return <div className='loading'>Loading...</div>;
+  }
 
   renderMovies=movies.Response==="True" ? (
     movies.Search.map((movie,index)=>(
@@ -24,20 +29,20 @@ const MovieListing = () => {
     ))
   ) : (<div className="movies-error"><h3>{movies.Error}</h3></div>)
   return (
-    <div className="movie-wrapper">
-      <div className="movie-list">
-        <h2>Movies</h2>
-        <div className="movie-container">
-          <Slider {...Settings}>{renderMovies}</Slider>
+      <div className="movie-wrapper">
+        <div className="movie-list">
+          <h2>Movies</h2>
+          <div className="movie-container">
+            <Slider {...Settings}>{renderMovies}</Slider>
+          </div>
+        </div>
+        <div className="show-list">
+          <h2>Shows</h2>
+          <div className="movie-container">
+            <Slider {...Settings}>{renderShows}</Slider>
+          </div>
         </div>
       </div>
-      <div className="show-list">
-        <h2>Shows</h2>
-        <div className="movie-container">
-          <Slider {...Settings}>{renderShows}</Slider>
-        </div>
-      </div>
-    </div>
   );
 }
 
