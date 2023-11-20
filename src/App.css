@@ -146,6 +146,7 @@ body{
     padding: 40px 0px;
     color: var(--font-primary);
     font-weight: 400;
+    overflow: hidden;
 }
 
 .movie-rating{
@@ -204,4 +205,11 @@ body{
     text-align: center;
     margin-top: 20px;
     margin-bottom: 20px;
+}
+
+@media (max-width:720px){
+    .movie-section{
+        flex-direction: column;
+        gap: 20px;
+    }
 }
