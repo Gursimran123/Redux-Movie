@@ -80,6 +80,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 5px;
     color: var(--font-primary);
     flex-direction: column;
 }
@@ -116,7 +117,7 @@ body{
 }
 
 .card-top{
-    height: 220px;
+    height: 250px;
 }
 
 .card-top img{
