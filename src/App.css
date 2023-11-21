@@ -210,6 +210,6 @@ body{
 @media (max-width:720px){
     .movie-section{
         flex-direction: column;
-        gap: 20px;
+        gap: 30px;
     }
 }
